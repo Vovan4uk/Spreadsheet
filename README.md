@@ -1,6 +1,7 @@
 ## Pre-requisites
 - Install Nodejs v6.9+
 - Install Apache Maven
+- Install MySQL
 
 ## Start developing
 
@@ -20,3 +21,10 @@
 ## Configuration files
 - src/main/frontend/package.json
 - pom.xml
+- resources/application.properties
+
+## Database
+change credentials `resources/application.properties`
+- db.url (default `jdbc:mysql://localhost:3306/spreadsheet`)
+- db.username (default `admin`)
+- db.password (default `admin`)
