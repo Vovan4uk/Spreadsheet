@@ -1,23 +1,76 @@
 <!--
-<h1>
-  {{title}}
-</h1>
--->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+<header>
+  <h1>
+    {{title}}
+  </h1>
+</header>
+
+<main>
+  <section class="todo-list" *ngIf="todos.length">
+&lt;!&ndash;
+    <div class="todo-item" *ngFor="let todo of todos" [ngClass]="{ 'completed': todo.completed }">
+&ndash;&gt;
+    <div class="todo-item" *ngFor="let todo of todos" [class.completed]="todo.completed">
+      <button class="checkbox icon" (click)="toggle(todo)">
+        <i class="material-icons">{{todo.completed ? 'check_box' : 'check_box_outline_blank'}}check_box</i>
       </button>
-      <a class="navbar-brand" href="#">Spring Angular 2</a>
+      <span class="title">{{todo.title}}</span>
+      <div class="actions">
+        <button class="delete icon" (click)="delete(todo)">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
     </div>
+  </section>
+</main>
+-->
+<hr>
+<main>
+  <h3>Existed spreadsheets</h3>
+  <section class="todo-list">
+    <div class="todo-item" *ngFor="let localSpreadsheet of spreadsheets">
+      <button class="checkbox icon" (click)="loadSpreadsheet(localSpreadsheet)">
+        <i class="material-icons">{{localSpreadsheet.id == spreadsheet?.id ? 'check_box' :
+          'check_box_outline_blank'}}</i>
+      </button>
+      <span class="title">{{localSpreadsheet.name}}</span>
+      <div class="actions">
+        <button class="checkbox icon" (click)="deleteSpreadsheet(localSpreadsheet)">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <form class="todo-form" (submit)="addSpreadsheet()" #spreadsheetForm="ngForm">
+    <input type="text" placeholder="New name" required [(ngModel)]="spreadsheetName" name="name">
+    <button type="submit" [disabled]="spreadsheetForm.form.invalid">Додати</button>
+  </form>
+</main>
 
-  </div>
-</nav>
+<form class="spreadSheet-form" *ngIf="spreadsheet">
+  <h3>{{spreadsheet?.name}}</h3>
+  <table>
+  <tr *ngFor="let spreadsheetDataRow of spreadsheetData; let row = index;">
+    <td *ngFor="let spreadsheetDataCol of spreadsheetDataRow;  let col = index;">
+      <input *ngIf="spreadsheetDataCol" value="{{spreadsheetDataCol?.value}}" (change)="updateCell($event, spreadsheetDataCol, spreadsheet)"/>
+      <input *ngIf="!spreadsheetDataCol" (change)="addCell($event, spreadsheet, row, col)" />
+    </td>
+  </tr>
+</table>
+</form>
 
-<div id="main" class="container-fluid" style="margin-top: 50px">
-  <router-outlet></router-outlet>
-</div>
+<hr>
+<main>
+  <h3>Functions by category</h3>
+  <span style="padding-bottom: 10px;">Not implemented yet. Only list by category from API.</span>
+  <section class="todo-list">
+    <div class="todo-item" *ngFor="let functionCategory of functionCategories">
+      <b>{{functionCategory.name}}:</b>
+      <span *ngFor="let function of functions">
+          <ng-container *ngIf="function.functionCategory.name === functionCategory.name ">&nbsp;({{function.name}})
+          </ng-container>
+        </span>
+    </div>
+  </section>
+</main>
+<hr>

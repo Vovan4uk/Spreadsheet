@@ -73,4 +73,13 @@ public abstract class GenericDaoImpl<T extends BasicDomain> implements GenericDa
         return entityManager.createQuery("select d from " + domainClass.getName() + " d").getResultList();
     }
 
+    @Override
+    public void removeById(Long id) {
+        if (id == null) {
+            String errorMessage = "Cannot be remove by null `id`";
+            logger.error(errorMessage);
+            throw new IllegalArgumentException(errorMessage);
+        }
+        entityManager.remove(entityManager.getReference(domainClass, id));
+    }
 }

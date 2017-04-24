@@ -37,4 +37,10 @@ public interface GenericDao<T extends BasicDomain> {
      */
     List<T> getAll();
 
+    /**
+     * Delete the entity from the database by primary key.
+     *
+     * @param id Entity id
+     */
+    void removeById(Long id);
 }

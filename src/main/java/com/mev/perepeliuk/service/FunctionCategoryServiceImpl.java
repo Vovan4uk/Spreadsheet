@@ -37,4 +37,9 @@ public class FunctionCategoryServiceImpl implements FunctionCategoryService{
     public List<FunctionCategory> getAll() {
         return functionCategoryDao.getAll();
     }
+
+    @Override
+    public void removeById(Long id) {
+        functionCategoryDao.removeById(id);
+    }
 }

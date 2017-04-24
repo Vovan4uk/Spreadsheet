@@ -13,27 +13,36 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "FUNCTION")
+@Table(name = "function")
 public class Function extends BasicDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Size(max = 1000)
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description")
     private String description;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "FUNCTION_CATEGORY_ID", nullable = false)
+    @JoinColumn(name = "function_category_id", nullable = false)
     private FunctionCategory functionCategory;
+
+    public Function() {
+    }
+
+    public Function(String name, String description, FunctionCategory functionCategory) {
+        this.name = name;
+        this.description = description;
+        this.functionCategory = functionCategory;
+    }
 
     @Override
     public Long getId() {

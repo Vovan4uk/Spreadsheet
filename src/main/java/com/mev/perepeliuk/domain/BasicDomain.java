@@ -12,7 +12,7 @@ import java.util.Date;
 public abstract class BasicDomain implements Serializable {
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "CREATE_DATE", nullable = false, updatable = false)
+    @Column(name = "create_date", nullable = false, updatable = false)
     private Date createDate;
 
     public abstract Long getId();
