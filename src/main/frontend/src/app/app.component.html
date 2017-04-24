@@ -1,29 +1,3 @@
-<!--
-<header>
-  <h1>
-    {{title}}
-  </h1>
-</header>
-
-<main>
-  <section class="todo-list" *ngIf="todos.length">
-&lt;!&ndash;
-    <div class="todo-item" *ngFor="let todo of todos" [ngClass]="{ 'completed': todo.completed }">
-&ndash;&gt;
-    <div class="todo-item" *ngFor="let todo of todos" [class.completed]="todo.completed">
-      <button class="checkbox icon" (click)="toggle(todo)">
-        <i class="material-icons">{{todo.completed ? 'check_box' : 'check_box_outline_blank'}}check_box</i>
-      </button>
-      <span class="title">{{todo.title}}</span>
-      <div class="actions">
-        <button class="delete icon" (click)="delete(todo)">
-          <i class="material-icons">delete</i>
-        </button>
-      </div>
-    </div>
-  </section>
-</main>
--->
 <hr>
 <main>
   <h3>Existed spreadsheets</h3>
@@ -45,19 +19,20 @@
     <input type="text" placeholder="New name" required [(ngModel)]="spreadsheetName" name="name">
     <button type="submit" [disabled]="spreadsheetForm.form.invalid">Додати</button>
   </form>
-</main>
 
-<form class="spreadSheet-form" *ngIf="spreadsheet">
-  <h3>{{spreadsheet?.name}}</h3>
-  <table>
-  <tr *ngFor="let spreadsheetDataRow of spreadsheetData; let row = index;">
-    <td *ngFor="let spreadsheetDataCol of spreadsheetDataRow;  let col = index;">
-      <input *ngIf="spreadsheetDataCol" value="{{spreadsheetDataCol?.value}}" (change)="updateCell($event, spreadsheetDataCol, spreadsheet)"/>
-      <input *ngIf="!spreadsheetDataCol" (change)="addCell($event, spreadsheet, row, col)" />
-    </td>
-  </tr>
-</table>
-</form>
+  <form class="spreadSheet-form" *ngIf="spreadsheet">
+    <h3>{{spreadsheet?.name}}</h3>
+    <table>
+      <tr *ngFor="let spreadsheetDataRow of spreadsheetData; let row = index;">
+        <td *ngFor="let spreadsheetDataCol of spreadsheetDataRow;  let col = index;">
+          <input *ngIf="spreadsheetDataCol" value="{{spreadsheetDataCol?.value}}"
+                 (change)="updateCell($event, spreadsheetDataCol, spreadsheet)"/>
+          <input *ngIf="!spreadsheetDataCol" (change)="addCell($event, spreadsheet, row, col)"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</main>
 
 <hr>
 <main>

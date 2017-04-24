@@ -5,26 +5,6 @@ import {Function} from './model/function';
 import {Spreadsheet} from "./model/spreadsheet";
 import {SpreadsheetCell} from "./model/spreadsheetCell";
 
-interface ITodo {
-  title: string;
-  completed: boolean;
-}
-
-const todos = [
-  {
-    title: 'add1',
-    completed: true
-  },
-  {
-    title: 'add2',
-    completed: false
-  },
-  {
-    title: 'add3',
-    completed: false
-  }
-];
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -39,10 +19,10 @@ export class AppComponent {
   spreadsheetName: string = '';
   spreadsheetData: SpreadsheetCell[][];
 
-  constructor(private appService: AppService){
+  constructor(private appService: AppService) {
   }
 
-  loadFunctionCategories(){
+  loadFunctionCategories() {
     this.appService.getFunctionCategories().subscribe(
       functionCategories => this.functionCategories = functionCategories,
       err => {
@@ -50,7 +30,7 @@ export class AppComponent {
       });
   }
 
-  loadFunctions(){
+  loadFunctions() {
     this.appService.getFunctions().subscribe(
       functions => this.functions = functions,
       err => {
@@ -58,7 +38,7 @@ export class AppComponent {
       });
   }
 
-  loadSpreadsheets(){
+  loadSpreadsheets() {
     this.appService.getSpreadsheets().subscribe(
       spreadsheets => this.spreadsheets = spreadsheets,
       err => {
@@ -66,7 +46,7 @@ export class AppComponent {
       });
   }
 
-  loadSpreadsheet(spreadsheet){
+  loadSpreadsheet(spreadsheet) {
     this.spreadsheet = spreadsheet;
     this.appService.getSpreadsheet(spreadsheet).subscribe(
       spreadsheetData => this.spreadsheetData = spreadsheetData,
@@ -75,7 +55,8 @@ export class AppComponent {
       });
     console.log(this.spreadsheetData);
   }
-  addSpreadsheet(){
+
+  addSpreadsheet() {
     this.appService.addSpreadsheet(this.spreadsheetName).subscribe(
       spreadsheets => this.spreadsheets = spreadsheets,
       err => {
@@ -92,24 +73,26 @@ export class AppComponent {
       });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loadFunctionCategories();
     this.loadFunctions();
     this.loadSpreadsheets();
   }
-  updateCell(event: any, spreadsheetCell: SpreadsheetCell, spreadsheet: Spreadsheet){
+
+  updateCell(event: any, spreadsheetCell: SpreadsheetCell, spreadsheet: Spreadsheet) {
     this.appService.updateCell(event, spreadsheetCell, spreadsheet).subscribe(
-      spreadsheets => {},
-      err => {});
+      spreadsheets => {
+      },
+      err => {
+      });
     console.log(spreadsheetCell);
   }
-  addCell(event: any, spreadsheet: Spreadsheet, row: number, col: number){
-    this.appService.addCell(event, spreadsheet, row, col).subscribe(
-      spreadsheets => {},
-      err => {});
-  }
-  toggle(todo: ITodo) {
-    todo.completed = !todo.completed;
-  }
 
+  addCell(event: any, spreadsheet: Spreadsheet, row: number, col: number) {
+    this.appService.addCell(event, spreadsheet, row, col).subscribe(
+      spreadsheets => {
+      },
+      err => {
+      });
+  }
 }

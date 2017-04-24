@@ -43,39 +43,39 @@ export class AppService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  addSpreadsheet (name: string): Observable<Spreadsheet[]> {
+  addSpreadsheet(name: string): Observable<Spreadsheet[]> {
     let spreadsheet: Spreadsheet = new Spreadsheet(null, name, null, []);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
     return this.http.post('api/spreadsheets/', JSON.stringify(spreadsheet), options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  deleteSpreadsheet (spreadsheet: Spreadsheet): Observable<Spreadsheet[]> {
+  deleteSpreadsheet(spreadsheet: Spreadsheet): Observable<Spreadsheet[]> {
     return this.http.delete(`api/spreadsheet/${spreadsheet.id}`)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  updateCell(event: any, spreadsheetCell: SpreadsheetCell, spreadsheet: Spreadsheet): Observable<any>{
+  updateCell(event: any, spreadsheetCell: SpreadsheetCell, spreadsheet: Spreadsheet): Observable<any> {
     spreadsheetCell.value = event.target.value;
     spreadsheetCell.spreadsheet = spreadsheet;
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
     return this.http.put('api/spreadsheet_cell/', JSON.stringify(spreadsheetCell), options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  addCell(event: any, spreadsheet: Spreadsheet, row: number, col: number): Observable<any>{
+  addCell(event: any, spreadsheet: Spreadsheet, row: number, col: number): Observable<any> {
     let spreadsheetCell: SpreadsheetCell = new SpreadsheetCell(null, row, col, null, spreadsheet, event.target.value, null);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
     return this.http.post('api/spreadsheet_cell/', JSON.stringify(spreadsheetCell), options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 }
