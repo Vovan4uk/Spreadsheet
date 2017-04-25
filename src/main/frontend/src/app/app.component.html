@@ -17,7 +17,7 @@
   </section>
   <form class="todo-form" (submit)="addSpreadsheet()" #spreadsheetForm="ngForm">
     <input type="text" placeholder="New name" required [(ngModel)]="spreadsheetName" name="name">
-    <button type="submit" [disabled]="spreadsheetForm.form.invalid">Додати</button>
+    <button type="submit" [disabled]="spreadsheetForm.form.invalid">Add</button>
   </form>
 
   <form class="spreadSheet-form" *ngIf="spreadsheet">

@@ -12,33 +12,30 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AppService {
-  functionCategories: FunctionCategory[] = [];
-  functions: Function[] = [];
-  spreadsheets: Spreadsheet[] = [];
 
   constructor(private http: Http) {
   }
 
   getFunctionCategories(): Observable<FunctionCategory[]> {
-    return this.http.get('api/function_categories/')
+    return this.http.get('api/function_category/')
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getFunctions(): Observable<Function[]> {
-    return this.http.get('api/functions/')
+    return this.http.get('api/function/')
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getSpreadsheets(): Observable<Spreadsheet[]> {
-    return this.http.get('api/spreadsheets/')
+    return this.http.get('api/spreadsheet/')
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getSpreadsheet(spreadsheet: Spreadsheet): Observable<SpreadsheetCell[][]> {
-    return this.http.get(`api/spreadsheet_data/${spreadsheet.id}`)
+    return this.http.get(`api/spreadsheet/${spreadsheet.id}/`)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -48,7 +45,7 @@ export class AppService {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
-    return this.http.post('api/spreadsheets/', JSON.stringify(spreadsheet), options)
+    return this.http.post('api/spreadsheet/', JSON.stringify(spreadsheet), options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }

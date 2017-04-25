@@ -53,7 +53,6 @@ export class AppComponent {
       err => {
         console.log(err);
       });
-    console.log(this.spreadsheetData);
   }
 
   addSpreadsheet() {
@@ -71,6 +70,7 @@ export class AppComponent {
       err => {
         console.log(err);
       });
+    this.spreadsheet = null;
   }
 
   ngOnInit() {
@@ -85,7 +85,6 @@ export class AppComponent {
       },
       err => {
       });
-    console.log(spreadsheetCell);
   }
 
   addCell(event: any, spreadsheet: Spreadsheet, row: number, col: number) {

@@ -17,6 +17,8 @@ public abstract class BasicDomain implements Serializable {
 
     public abstract Long getId();
 
+    public abstract void setId(Long id);
+
     @PrePersist
     protected void onCreate() {
         createDate = new Date();

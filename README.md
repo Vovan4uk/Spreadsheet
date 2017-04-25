@@ -28,3 +28,7 @@ change credentials `resources/application.properties`
 - db.url (default `jdbc:mysql://localhost:3306/spreadsheet`)
 - db.username (default `admin`)
 - db.password (default `admin`)
+
+## CI (Travis)
+change credentials
+- .travis.yml

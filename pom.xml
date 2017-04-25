@@ -20,6 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.mev.perepeliuk.Application</start-class>
         <java.version>1.8</java.version>
+        <hibernateVersion>4.3.11.Final</hibernateVersion>
     </properties>
 
     <dependencies>
@@ -46,7 +47,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
+            <version>${hibernateVersion}</version>
         </dependency>
 
         <dependency>
@@ -61,8 +62,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <excludes>
                         <exclude>frontend/**</exclude>
                     </excludes>

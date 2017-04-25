@@ -59,6 +59,11 @@ public class SpreadsheetCell extends BasicDomain {
         return id;
     }
 
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Integer getRow() {
         return row;
     }
